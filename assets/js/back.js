@@ -10,5 +10,6 @@ require('../css/back.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
+const bootstrap = require('bootstrap');
 
 console.log('Hello Webpack Encore! Edit me in assets/js/back.js');

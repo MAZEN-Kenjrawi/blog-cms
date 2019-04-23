@@ -38,7 +38,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
-        return 'app_login' === $request->attributes->get('_route')
+        return 'admin_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -81,16 +81,15 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            return new RedirectResponse($targetPath);
+        if ($request->getRequestUri() === $this->getLoginUrl()) {
+            return new RedirectResponse($this->urlGenerator->generate('admin_dashboard'));
         }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->getTargetPath($request->getSession(), $providerKey));
     }
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('app_login');
+        return $this->urlGenerator->generate('admin_login');
     }
 }

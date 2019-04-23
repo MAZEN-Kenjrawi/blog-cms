@@ -1,16 +1,52 @@
 @import "~bootstrap/scss/bootstrap";
+
+$gold:    #a89344 !default;
+
 .login-container {
     height: 400px;
 }
 
-
 /* No radius */
-.form-control {
+.form-control, .card, .btn, .dropdown-menu {
     border-radius: 0 !important;
 }
-.card {
-    border-radius: 0 !important;
+.dropdown-item.active, .dropdown-item:active {
+    background-color: $gold;
 }
-.btn {
-    border-radius: 0 !important;
+.dropdown-menu {
+    border: 1px solid $gold;
+}
+.navbar-brand {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 26px;
+    font-weight: 300;
+    font-family: $font-family-base;
+}
+.navbar {
+    border-bottom: 3px solid $gold;
+}
+
+.side-menu {
+    padding: 0px;
+    min-height: 650px;
+}
+.list-group-item {
+    background-color: inherit;
+    padding: 0px;
+    a {
+        text-decoration: none;
+        display: block;
+        padding: 0.75rem 1.25rem;
+        color: #343a40;
+        font-weight: 500;
+        font-size: 18px;
+        font-family: $font-family-base;
+        transition-duration: .5s;
+
+        &:hover {
+            transition-duration: .5s;
+            padding-left: 3.25rem;
+            color: rgb(52, 58, 64) !important;
+        }
+    }
 }
