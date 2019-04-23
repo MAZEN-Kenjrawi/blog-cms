@@ -1,0 +1,16 @@
+@import "~bootstrap/scss/bootstrap";
+.login-container {
+    height: 400px;
+}
+
+
+/* No radius */
+.form-control {
+    border-radius: 0 !important;
+}
+.card {
+    border-radius: 0 !important;
+}
+.btn {
+    border-radius: 0 !important;
+}
