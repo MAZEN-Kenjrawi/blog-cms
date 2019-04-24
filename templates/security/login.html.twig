@@ -1,6 +1,7 @@
-{% extends 'back.html.twig' %}
+{% extends 'front.html.twig' %}
 
-{% block title %}Login!
+{% block title %}
+    Moutaz Blog - Login!
 {% endblock %}
 
 {% block body %}
@@ -10,7 +11,7 @@
                 <div class="card bg-light">
                     <div class="card-header">Please sign in</div>
                     <div class="card-body">
-                        <h4 class="card-title">Login</h4>
+                        <h4 class="card-title">Mouataz Blog - Login</h4>
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
