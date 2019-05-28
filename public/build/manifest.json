@@ -1,0 +1,14 @@
+{
+  "build/back.css": "http://localhost:8080/build/back.css",
+  "build/back.js": "http://localhost:8080/build/back.js",
+  "build/front.css": "http://localhost:8080/build/front.css",
+  "build/front.js": "http://localhost:8080/build/front.js",
+  "build/runtime.js": "http://localhost:8080/build/runtime.js",
+  "build/vendors~back.js": "http://localhost:8080/build/vendors~back.js",
+  "build/vendors~back~front.js": "http://localhost:8080/build/vendors~back~front.js",
+  "build/fonts/fontawesome-webfont.eot": "http://localhost:8080/build/fonts/fontawesome-webfont.674f50d2.eot",
+  "build/fonts/fontawesome-webfont.woff2": "http://localhost:8080/build/fonts/fontawesome-webfont.af7ae505.woff2",
+  "build/fonts/fontawesome-webfont.ttf": "http://localhost:8080/build/fonts/fontawesome-webfont.b06871f2.ttf",
+  "build/fonts/fontawesome-webfont.woff": "http://localhost:8080/build/fonts/fontawesome-webfont.fee66e71.woff",
+  "build/images/fontawesome-webfont.svg": "http://localhost:8080/build/images/fontawesome-webfont.912ec66d.svg"
+}

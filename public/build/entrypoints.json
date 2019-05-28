@@ -1,0 +1,25 @@
+{
+  "entrypoints": {
+    "front": {
+      "js": [
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/vendors~back~front.js",
+        "http://localhost:8080/build/front.js"
+      ],
+      "css": [
+        "http://localhost:8080/build/front.css"
+      ]
+    },
+    "back": {
+      "js": [
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/vendors~back~front.js",
+        "http://localhost:8080/build/vendors~back.js",
+        "http://localhost:8080/build/back.js"
+      ],
+      "css": [
+        "http://localhost:8080/build/back.css"
+      ]
+    }
+  }
+}
