@@ -21,6 +21,7 @@ Encore
     .addEntry('back', './assets/js/back.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
+    // .enableVueLoader()
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -66,4 +67,13 @@ Encore
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
-module.exports = Encore.getWebpackConfig();
+var config = Encore.getWebpackConfig();
+
+// disable amd, for datatable
+config.module.rules.unshift({
+  parser: {
+    amd: false
+  }
+});
+
+module.exports = config;

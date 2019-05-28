@@ -13,9 +13,7 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        <script src="{{ asset('build/front.js') }}"></script>
-        <script src="{{ asset('build/runtime.js') }}"></script>
-        <script src="{{ asset('build/vendors~back~front.js') }}"></script>
+        {{ encore_entry_script_tags('front') }}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
