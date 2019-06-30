@@ -1,0 +1,37 @@
+{% use 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block photo_widget %}
+    {% spaceless %}
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2" for="{{ id }}">{{ label }}</label>
+            <div class="col-sm-10">
+                <input type="text" name="{{ full_name }}" id="{{ id }}" class="photo-input"/>
+
+                <img {% if value %} src="{{ app.request.schemeAndHttpHost ~ app.request.baseUrl ~ value }}" {% else %} src="{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/images/back/no-img-200x200.png" {% endif %} class="border" id="{{ id }}-img" width="200" height="200"/>
+
+                <a class="btn" type="button"
+                    href="javascript:window.open('/bundles/filemanager/dialog.php?type=1&popup=1&field_id={{ id }}&akey={{ csrf_token("app") }}', 'File Manager', 'scrollbars=1,width=880,height=570')">
+                    <i class="fa fa-file"></i>
+                    Choose from File Manager
+                </a>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block status_widget %}
+    {% spaceless %}
+        <div class="form-group row">
+            <div class="btn-group btn-group-toggle col-sm-3 offset-sm-9" data-toggle="buttons">
+                <label class="btn btn-secondary {% if value != 0 %} active {% endif %}" for="active_1">
+                    <input autocomplete="off" {% if value != 0 %} checked {% endif %} id="active_1" name="{{ full_name }}" type="radio" value="1" />
+                    Active
+                </label>
+                <label class="btn btn-secondary {% if value == 0 %} active {% endif %}" for="active_0">
+                    <input autocomplete="off" {% if value == 0 %} checked {% endif %} id="active_0" name="{{ full_name }}" type="radio" value="0" />
+                    Inactive
+                </label>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}

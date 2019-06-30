@@ -1,12 +1,13 @@
 var Encore = require('@symfony/webpack-encore');
+const CopyPlugin = require('copy-webpack-plugin');
 
 Encore
-    // directory where compiled assets will be stored
-    .setOutputPath('public/build/')
-    // public path used by the web server to access the output path
-    .setPublicPath('/build')
-    // only needed for CDN's or sub-directory deploy
-    //.setManifestKeyPrefix('build/')
+	// directory where compiled assets will be stored
+	.setOutputPath('public/build/')
+	// public path used by the web server to access the output path
+	.setPublicPath('/build')
+	// only needed for CDN's or sub-directory deploy
+	//.setManifestKeyPrefix('build/')
 
     /*
      * ENTRY CONFIG
@@ -17,18 +18,18 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .addEntry('front', './assets/js/front.js')
-    .addEntry('back', './assets/js/back.js')
-    //.addEntry('page1', './assets/js/page1.js')
-    //.addEntry('page2', './assets/js/page2.js')
-    // .enableVueLoader()
+	.addEntry('front', './assets/js/front.js')
+	.addEntry('back', './assets/js/back.js')
+	//.addEntry('page1', './assets/js/page1.js')
+	//.addEntry('page2', './assets/js/page2.js')
+	// .enableVueLoader()
 
-    // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-    .splitEntryChunks()
+	// When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
+	.splitEntryChunks()
 
-    // will require an extra script tag for runtime.js
-    // but, you probably want this, unless you're building a single-page app
-    .enableSingleRuntimeChunk()
+	// will require an extra script tag for runtime.js
+	// but, you probably want this, unless you're building a single-page app
+	.enableSingleRuntimeChunk()
 
     /*
      * FEATURE CONFIG
@@ -37,43 +38,49 @@ Encore
      * list of features, see:
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
-    .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
-    .enableSourceMaps(!Encore.isProduction())
-    // enables hashed filenames (e.g. app.abc123.css)
-    .enableVersioning(Encore.isProduction())
+	.cleanupOutputBeforeBuild()
+	.enableBuildNotifications()
+	.enableSourceMaps(!Encore.isProduction())
+	// enables hashed filenames (e.g. app.abc123.css)
+	.enableVersioning(Encore.isProduction())
 
-    // enables @babel/preset-env polyfills
-    .configureBabel(() => {}, {
-        useBuiltIns: 'usage',
-        corejs: 3
-    })
+	// enables @babel/preset-env polyfills
+	.configureBabel(() => { }, {
+		useBuiltIns: 'usage',
+		corejs: 3
+	})
 
-    // enables Sass/SCSS support
-    .enableSassLoader()
+	// enables Sass/SCSS support
+	.enableSassLoader()
 
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+	// uncomment if you use TypeScript
+	//.enableTypeScriptLoader()
 
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes()
+	// uncomment to get integrity="..." attributes on your script & link tags
+	// requires WebpackEncoreBundle 1.4 or higher
+	//.enableIntegrityHashes()
 
-    // uncomment if you're having problems with a jQuery plugin
-    .autoProvidejQuery()
+	// uncomment if you're having problems with a jQuery plugin
+	.autoProvidejQuery()
 
-    // uncomment if you use API Platform Admin (composer req api-admin)
-    //.enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
-;
+	// uncomment if you use API Platform Admin (composer req api-admin)
+	//.enableReactPreset()
+	//.addEntry('admin', './assets/js/admin.js')
+	.addPlugin(new CopyPlugin([
+		// Copy the skins from tinymce to the build/skins directory
+		{ from: 'node_modules/tinymce/themes', to: 'themes' },
+		{ from: 'node_modules/tinymce/skins', to: 'skins' },
+		{ from: 'node_modules/tinymce/plugins', to: 'plugins' },
+	]))
+	;
 
 var config = Encore.getWebpackConfig();
 
 // disable amd, for datatable
 config.module.rules.unshift({
-  parser: {
-    amd: false
-  }
+	parser: {
+		amd: false
+	}
 });
 
 module.exports = config;

@@ -4,6 +4,8 @@
 /.env.local.php
 /.env.*.local
 /public/bundles/
+/public/uploads/files/
+/public/uploads/thumbs/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -20,6 +22,9 @@
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
+/public/uploads/image/
+/public/uploads/file/
+/public/uploads/video/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

@@ -1,0 +1,32 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white">
+            <li class="breadcrumb-item">
+                <a href="{{ path('admin_dashboard') }}">Dashboard</a>
+            </li>
+            <li aria-current="page" class="breadcrumb-item active">{{ section_name }}</li>
+        </ol>
+    </nav>
+    <form id="filters-from">
+        {{ include('admin/_partials/_languages_buttons.html.twig') }}
+    </form>
+    <div>
+        <a href="{{ path('blog_add') }}" class="btn btn-info">
+            <i class="fa fa-plus"></i>
+            Add Blog
+        </a>
+    </div>
+    <table class="table table-sm dataTable ajax" data-endpoint="{{ path('blog_data') }}">
+        <thead>
+            <tr>
+                <th data-label="title" data-orderable="true" scope="col">Title</th>
+                <th data-label="category" data-orderable="true" scope="col">Category</th>
+                <th class="text-center" data-label="status" scope="col">Status</th>
+                <th class="text-center" data-label="functions" scope="col">Functions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+{% endblock %}

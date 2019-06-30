@@ -35,7 +35,7 @@
         </nav>
     {% endblock %}
     <body>
-        
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2 side-menu bg-light">
@@ -43,29 +43,41 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <a href="{{ path('admin_dashboard') }}">
-                                <i class="fa fa-dashboard"></i> Dashboard
+                                    <i class="fa fa-dashboard"></i>
+                                    Dashboard
                                 </a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{ path('category_index') }}">
-                                    <i class="fa fa-folder-o"></i> Categories
+                                    <i class="fa fa-folder-o"></i>
+                                    Categories
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="javascript:void(0)">
-                                    <i class="fa fa-newspaper-o"></i> Blogs
+                                <a href="{{ path('blog_index') }}">
+                                    <i class="fa fa-newspaper-o"></i>
+                                    Blogs
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="javascript:void(0)" onclick="window.open('/bundles/filemanager/dialog.php?type=0&akey={{ csrf_token("app") }}', 'File Manager', 'height=600,width=900');">
+                                    <i class="fa fa-file"></i>
+                                    File Manager
                                 </a>
                             </li>
                         </ul>
                     {% endblock %}
                 </div>
-                <div class="col-sm-10">
-                    {% block body %}{% endblock %}
+                <div class="col-sm-10"> {% block body %}{% endblock %}
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        {{ encore_entry_script_tags('back') }}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+
+            <script type="text/javascript">
+                window.csrf = "{{ csrf_token('app') }}";
+                window.user = {{ app.user | json_encode }};
+            </script>
+            {{ encore_entry_script_tags('back') }}
+            {% block javascripts %}{% endblock %}
+        </body>
+    </html>

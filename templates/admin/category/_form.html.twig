@@ -6,7 +6,7 @@
     <div class="form-group row">
         <div class="col-sm-10 offset-sm-2">
             <button class="btn btn-info" type="submit">{{ button_label|default('Save') }}</button>
-            <a class="btn btn-dark" href="">Cancel</a>
+            <a class="btn btn-dark" href="{{ path(module_name ~ '_index') }}">Cancel</a>
         </div>
     </div>
     {{ form_end(form) }}
