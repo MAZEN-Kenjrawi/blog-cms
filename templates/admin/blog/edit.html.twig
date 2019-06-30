@@ -1,0 +1,18 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white">
+            <li class="breadcrumb-item">
+                <a href="{{ path('admin_dashboard') }}">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('blog_index') }}">Blogs</a>
+            </li>
+            <li aria-current="page" class="breadcrumb-item active">{{ section_name }}</li>
+        </ol>
+    </nav>
+
+    {{ include('admin/blog/_form.html.twig', {'button_label': 'Update', 'form_class': 'editingForm'}) }}
+
+{% endblock %}
