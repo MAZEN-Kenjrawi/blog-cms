@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -23,14 +23,8 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('active', CheckboxType::class, [
-                'attr' => [
-                    'class' => 'custom-control-input',
-                ],
-                'label_attr' => [
-                    'class' => 'custom-control-label float-right',
-                ],
-                'required' => false,
+            ->add('active', HiddenType::class, [
+                'block_prefix' => 'status',
             ])
             ->add('lang', ChoiceType::class, [
                 'choices' => [
@@ -56,9 +50,16 @@ class CategoryType extends AbstractType
             ->add('content', TextareaType::class, [
                 'attr' => [
                     'class' => 'editor',
+                ],
+                'required' => false,
+            ])
+            ->add('meta_title', TextareaType::class, [
+                'attr' => [
+                    'class' => 'meta-title',
+                    'data-title_en' => 'Moutaz Blog',
+                    'data-title_ar' => 'مدونة معتز'
                 ]
             ])
-            ->add('meta_title')
             ->add('meta_description');
     }
 }

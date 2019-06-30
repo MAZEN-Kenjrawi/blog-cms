@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Category;
+use App\Traits\Admin\RepositoryFlipStatus;
+use App\Contract\SearchableEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -12,8 +14,10 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Category[]    findAll()
  * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoryRepository extends ServiceEntityRepository
+class CategoryRepository extends ServiceEntityRepository implements SearchableEntity
 {
+    use RepositoryFlipStatus;
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Category::class);
@@ -25,36 +29,11 @@ class CategoryRepository extends ServiceEntityRepository
             ->update()
             ->set('C.sort', 'C.sort + 1')
             ->getQuery()
-            ->execute()
-        ;
+            ->execute();
     }
 
-    // /**
-    //  * @return Category[] Returns an array of Category objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getSearchInColumns()
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return ['T.title', 'T.content'];
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Category
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

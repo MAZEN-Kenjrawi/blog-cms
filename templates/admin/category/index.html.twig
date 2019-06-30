@@ -9,45 +9,24 @@
             <li aria-current="page" class="breadcrumb-item active">{{ section_name }}</li>
         </ol>
     </nav>
+    <form id="filters-from">
+        {{ include('admin/_partials/_languages_buttons.html.twig') }}
+    </form>
     <div>
         <a href="{{ path('category_add') }}" class="btn btn-info">
-            <i class="fa fa-plus"></i> Add Category
+            <i class="fa fa-plus"></i>
+            Add Category
         </a>
     </div>
-    <table class="table table-sm dataTable">
+    <table class="table table-sm dataTable ajax" data-endpoint="{{ path('category_data') }}">
         <thead>
             <tr>
-                <th scope="col" class="text-center">#</th>
-                <th scope="col">Title</th>
-                <th scope="col" class="text-center">Status</th>
-                <th scope="col" class="text-center">Functions</th>
+                <th class="text-center" data-label="sort" data-orderable="true" scope="col">#</th>
+                <th data-label="title" data-orderable="true" scope="col">Title</th>
+                <th class="text-center" data-label="status" scope="col">Status</th>
+                <th class="text-center" data-label="functions" scope="col">Functions</th>
             </tr>
         </thead>
-        <tbody>
-            {% for category in categories %}
-                <tr>
-                    <th scope="row" class="text-center">{{ category.sort }}</th>
-                    <td>{{ category.title }}</td>
-                    <td class="text-center">
-                        <a href="javascript:void(0)"
-                            class="change-status btn fa {{ (category.active == 0)? 'fa-times text-danger' : 'fa-check text-success' }}">
-                            <span class="sr-only">Status</span>
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <div class="btn-group btn-group-toggle">
-                            <a href="{{ path('category_edit', {"id": category.id}) }}" class="btn btn-info">
-                                <span class="fa fa-pencil"></span>
-                            </a>
-                            <a href="{{ path('category_delete', {"id": category.id}) }}" class="btn btn-danger">
-                                <span class="fa fa-times"></span>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
+        <tbody></tbody>
     </table>
 {% endblock %}
-
- 
