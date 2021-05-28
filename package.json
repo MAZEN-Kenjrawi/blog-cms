@@ -25,6 +25,6 @@
     "dependencies": {
         "@fancyapps/fancybox": "^3.5.7",
         "axios": "^0.18.0",
-        "tinymce": "^5.0.7"
+        "tinymce": "^5.7.1"
     }
 }
